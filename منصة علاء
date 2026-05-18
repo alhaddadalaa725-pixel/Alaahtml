@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة المهندس علاء الحداد | تعليمية لطلاب زراعة دمنهور</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8f5e9 100%);
+            min-height: 100vh;
+            color: #212121;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 50%, #4CAF50 100%);
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+        
+        .logo-container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo-icon {
+            font-size: 60px;
+            color: #fff;
+            margin-bottom: 15px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .header h1 {
+            color: #fff;
+            font-size: 2.5em;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .header .subtitle {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+        
+        .header .tagline {
+            color: #FF8F00;
+            font-size: 1em;
+            margin-top: 10px;
+            font-weight: 700;
+            background: rgba(255,255,255,0.15);
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 25px;
+        }
+        
+        /* Stats Bar */
+        .stats-bar {
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2em;
+            font-weight: 800;
+            color: #1B5E20;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        /* Navigation */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 20px;
+            background: #fff;
+            border-bottom: 3px solid #e0e0e0;
+            flex-wrap: wrap;
+        }
+        
+        .nav-tab {
+            padding: 12px 25px;
+            border: none;
+            background: #f5f5f5;
+            color: #666;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1em;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .nav-tab:hover, .nav-tab.active {
+            background: linear-gradient(135deg, #1B5E20, #4CAF50);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(27, 94, 32, 0.3);
+        }
+        
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2em;
+            color: #1B5E20;
+            margin-bottom: 40px;
+            font-weight: 800;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #1B5E20, #4CAF50);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        /* Subjects Grid */
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .subject-card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        
+        .subject-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(27, 94, 32, 0.2);
+            border-color: #4CAF50;
+        }
+        
+        .subject-header {
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .subject-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .subject-card:nth-child(1) .subject-header { background: linear-gradient(135deg, #FF6B6B, #EE5A5A); }
+        .subject-card:nth-child(2) .subject-header { background: linear-gradient(135deg, #4CAF50, #2E7D32); }
+        .subject-card:nth-child(3) .subject-header { background: linear-gradient(135deg, #2196F3, #1565C0); }
+        .subject-card:nth-child(4) .subject-header { background: linear-gradient(135deg, #FF9800, #F57C00); }
+        .subject-card:nth-child(5) .subject-header { background: linear-gradient(135deg, #9C27B0, #7B1FA2); }
+        .subject-card:nth-child(6) .subject-header { background: linear-gradient(135deg, #00BCD4, #0097A7); }
+        .subject-card:nth-child(7) .subject-header { background: linear-gradient(135deg, #795548, #5D4037); }
+        .subject-card:nth-child(8) .subject-header { background: linear-gradient(135deg, #607D8B, #455A64); }
+        
+        .subject-header h3 {
+            color: #fff;
+            font-size: 1.3em;
+            font-weight: 700;
+        }
+        
+        .subject-header .en-name {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.85em;
+            margin-top: 5px;
+        }
+        
+        .subject-body {
+            padding: 25px;
+        }
+        
+        .subject-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        
+        .subject-stat {
+            text-align: center;
+        }
+        
+        .subject-stat i {
+            color: #4CAF50;
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+        
+        .subject-stat span {
+            display: block;
+            font-size: 0.8em;
+            color: #666;
+        }
+        
+        .btn-enter {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            background: linear-gradient(135deg, #1B5E20, #4CAF50);
+            color: #fff;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1em;
+            font-weight: 700;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-enter:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(27, 94, 32, 0.3);
+        }
+        
+        /* Subject Detail Page */
+        .subject-detail {
+            display: none;
+            background: #fff;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .subject-detail.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: #f5f5f5;
+            border: none;
+            border-radius: 25px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.9em;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+        
+        .back-btn:hover {
+            background: #1B5E20;
+            color: #fff;
+        }
+        
+        .detail-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #e8f5e9;
+        }
+        
+        .detail-icon {
+            font-size: 50px;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #1B5E20, #4CAF50);
+            color: #fff;
+        }
+        
+        .detail-title h2 {
+            color: #1B5E20;
+            font-size: 1.8em;
+            font-weight: 800;
+        }
+        
+        .detail-title p {
+            color: #666;
+        }
+        
+        /* Content Tabs */
+        .content-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .content-tab {
+            padding: 12px 25px;
+            border: 2px solid #e0e0e0;
+            background: #fff;
+            color: #666;
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.95em;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .content-tab:hover, .content-tab.active {
+            border-color: #4CAF50;
+            background: #e8f5e9;
+            color: #1B5E20;
+        }
+        
+        .content-tab i {
+            font-size: 1.1em;
+        }
+        
+        /* PDF List */
+        .pdf-list {
+            display: none;
+        }
+        
+        .pdf-list.active {
+            display: block;
+        }
+        
+        .pdf-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+            border-right: 4px solid transparent;
+        }
+        
+        .pdf-item:hover {
+            background: #e8f5e9;
+            border-right-color: #4CAF50;
+            transform: translateX(-5px);
+        }
+        
+        .pdf-icon {
+            font-size: 35px;
+            color: #e74c3c;
+        }
+        
+        .pdf-info {
+            flex: 1;
+        }
+        
+        .pdf-info h4 {
+            color: #212121;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+        
+        .pdf-info p {
+            color: #888;
+            font-size: 0.85em;
+        }
+        
+        .pdf-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn-download, .btn-view {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.85em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .btn-download {
+            background: #1B5E20;
+            color: #fff;
+        }
+        
+        .btn-view {
+            background: #f5f5f5;
+            color: #666;
+        }
+        
+        .btn-download:hover, .btn-view:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Question Bank */
+        .question-bank {
+            display: none;
+        }
+        
+        .question-bank.active {
+            display: block;
+        }
+        
+        .quiz-card {
+            background: #f9f9f9;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+        
+        .quiz-question {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: #212121;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .quiz-options {
+            display: grid;
+            gap: 10px;
+        }
+        
+        .quiz-option {
+            padding: 15px 20px;
+            background: #fff;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.95em;
+            text-align: right;
+        }
+        
+        .quiz-option:hover {
+            border-color: #4CAF50;
+            background: #e8f5e9;
+        }
+        
+        .quiz-option.correct {
+            border-color: #4CAF50;
+            background: #e8f5e9;
+            color: #1B5E20;
+        }
+        
+        .quiz-option.wrong {
+            border-color: #e74c3c;
+            background: #ffebee;
+            color: #c62828;
+        }
+        
+        .answer-reveal {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: #e8f5e9;
+            border-radius: 10px;
+            border-right: 4px solid #4CAF50;
+        }
+        
+        .answer-reveal.show {
+            display: block;
+        }
+        
+        .btn-show-answer {
+            padding: 10px 25px;
+            background: #FF8F00;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.9em;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s;
+        }
+        
+        .btn-show-answer:hover {
+            background: #F57C00;
+            transform: scale(1.05);
+        }
+        
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 1000;
+        }
+        
+        .whatsapp-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 25px;
+            background: #25D366;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4); }
+            50% { box-shadow: 0 5px 30px rgba(37, 211, 102, 0.6); }
+        }
+        
+        .whatsapp-btn:hover {
+            transform: scale(1.05);
+            background: #128C7E;
+        }
+        
+        .whatsapp-btn i {
+            font-size: 1.5em;
+        }
+        
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #1B5E20, #2E7D32);
+            color: #fff;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+        }
+        
+        .footer h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+        
+        .footer p {
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+        
+        .footer .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .footer .social-links a {
+            color: #fff;
+            font-size: 1.5em;
+            transition: all 0.3s;
+        }
+        
+        .footer .social-links a:hover {
+            transform: translateY(-5px);
+            color: #FF8F00;
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            font-size: 0.9em;
+            opacity: 0.7;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .subjects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-bar {
+                gap: 20px;
+            }
+            
+            .detail-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .whatsapp-float {
+                bottom: 20px;
+                left: 20px;
+            }
+            
+            .whatsapp-btn span {
+                display: none;
+            }
+        }
+        
+        /* Hidden sections */
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-container">
+            <i class="fas fa-graduation-cap logo-icon"></i>
+            <h1>منصة المهندس علاء الحداد</h1>
+            <p class="subtitle">منصة تعليمية لطلاب فرقة أولى زراعة - جامعة دمنهور</p>
+            <span class="tagline">📚 معاك من أولى لحد التخرج</span>
+        </div>
+    </header>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+        <div class="stat-item">
+            <div class="stat-number">8</div>
+            <div class="stat-label">مواد دراسية</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">50+</div>
+            <div class="stat-label">تلخيص PDF</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">200+</div>
+            <div class="stat-label">سؤال اختياري</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">مجاني</div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-tabs">
+        <button class="nav-tab active" onclick="showSection('subjects')">
+            <i class="fas fa-book-open"></i> المواد الدراسية
+        </button>
+        <button class="nav-tab" onclick="showSection('questions')">
+            <i class="fas fa-question-circle"></i> بنك الأسئلة
+        </button>
+        <button class="nav-tab" onclick="showSection('about')">
+            <i class="fas fa-info-circle"></i> عن المنصة
+        </button>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- Subjects Section -->
+        <div id="subjects-section" class="section-content">
+            <h2 class="section-title">📖 المواد الدراسية</h2>
+            <div class="subjects-grid" id="subjects-grid">
+                <!-- Subject cards will be generated by JS -->
+            </div>
+        </div>
+
+        <!-- Subject Detail Template -->
+        <div id="subject-det
